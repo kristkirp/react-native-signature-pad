@@ -116,12 +116,16 @@ class SignaturePad extends Component {
   _renderLoading = (args) => {
 
   };
-
+onMessage = (event) => {
+    var base64DataUrl = JSON.parse(event.nativeEvent.data);
+    this._bridged_finishedStroke(base64DataUrl);
+ }
   render = () => {
     return (
         <WebView automaticallyAdjustContentInsets={false}
                  onNavigationStateChange={this._onNavigationChange}
                  renderError={this._renderError}
+				 onMessage={this.onMessage}
                  renderLoading={this._renderLoading}
                  source={this.source}
                  javaScriptEnabled={true}
